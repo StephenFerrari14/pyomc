@@ -1,0 +1,7 @@
+pyom.egg-info/
+py-target/
+pom.xml
+script.py
+venv/
+.idea
+__pycache__/
