@@ -22,35 +22,42 @@ BLOCKLIST = ['setup.py', 'venv', 'py-target']
 @click.option('--target', default='./py-target', help='Directory to save compiled Python files to')
 @click.option('--config', default='./pom.xml', help='Location of config file to compile with')
 @click.option('--compile-only', is_flag=True, help='Only compile files and don\'t run')
+@click.option('-r', is_flag=True, help='Run without compile')
 @click.argument('file', nargs=-1, required=False)  # Maybe nargs will help
-def pyom(directory, target, config, compile_only, file):
+def pyom(directory, target, config, compile_only, r, file):
+    runOnly = r
     # Validation
-    if not compile_only and not file:
+    if (not compile_only or runOnly) and not file:
         click.echo('File path must be entered when running something.')
         click.echo('Ending pajama time.')
         return
 
-    files = getPyFiles(directory, target)
-    if files:
-        # Delete target
-        removeTarget(target)
-        # Copy files to target folder
-        copyFiles(files, target)
-        # Parse pom for properties
-        properties = parseXML(config)
-        # Replace properties in target python files
-        injectProperties(properties, target)
-        click.echo('Compiling complete.')
-        # Run py file
-        if compile_only:
-            click.echo('Skipping run.')
-        else:
-            click.echo("Run script.")
-            run(target + '/' + file[0], file[1:])
-
-        click.echo('Done.')
+    if runOnly:
+        # Add validation for file and target directory
+        click.echo("Run script.")
+        run(target + '/' + file[0], file[1:])
     else:
-        click.echo('No files found.')
+        files = getPyFiles(directory, target)
+        if files:
+            # Delete target
+            removeTarget(target)
+            # Copy files to target folder
+            copyFiles(files, target)
+            # Parse pom for properties
+            properties = parseXML(config)
+            # Replace properties in target python files
+            injectProperties(properties, target)
+            click.echo('Compiling complete.')
+            # Run py file
+            if compile_only:
+                click.echo('Skipping run.')
+            else:
+                click.echo("Run script.")
+                run(target + '/' + file[0], file[1:])
+
+            click.echo('Done.')
+        else:
+            click.echo('No files found.')
 
 
 @printStep('Getting python files to compile...')

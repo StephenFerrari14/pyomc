@@ -16,6 +16,7 @@ Options:
 
 ```
 
+Example
 ```.env
 pyomc my-python-app.py arg1
 ```
@@ -26,6 +27,7 @@ Defaults:
 --target=./py-target  
 --config=./pom.xml
 ```  
+
 
 ### Future tasks
 - Accept java.properties file instead of pom in config flag  
