@@ -24,7 +24,7 @@ BLOCKLIST = ['setup.py', 'venv', 'py-target']
 @click.option('--compile-only', is_flag=True, help='Only compile files and don\'t run')
 @click.option('-r', is_flag=True, help='Run without compile')
 @click.argument('file', nargs=-1, required=False)  # Maybe nargs will help
-def pyom(directory, target, config, compile_only, r, file):
+def pyomc(directory, target, config, compile_only, r, file):
     runOnly = r
     # Validation
     if (not compile_only or runOnly) and not file:
@@ -130,4 +130,4 @@ def run(file: str, params: list) -> None:
 
 
 if __name__ == "__main__":
-    pyom()
+    pyomc()
