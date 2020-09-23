@@ -9,12 +9,19 @@ from typing import List
 import click
 import xmltodict
 
-from decorators import printStep
-
 pyPathRegex = re.compile(r'(.*)\/.*.py')
 propertyRegex = re.compile(r'.*\${(.*)}.*')
 
 BLOCKLIST = ['setup.py', 'venv', 'py-target']
+
+
+def printStep(step):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            click.echo(step)
+            return func(*args, *kwargs)
+        return wrapper
+    return decorator
 
 
 @click.command()

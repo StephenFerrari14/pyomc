@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyomc',
-    version='1.0.1',
+    version='1.0.0',
     author='Stephen Ferrari',
     author_email='stephenferrari14@gmail.com',
     description='',
@@ -10,6 +10,7 @@ setup(
     py_modules=['pyomc'],
     install_requires=[
         'Click',
+        'xmltodict'
     ],
     entry_points='''
         [console_scripts]
