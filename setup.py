@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pyomc',
-    version='1.0.0',
+    version='1.0.1',
     author='Stephen Ferrari',
     author_email='stephenferrari14@gmail.com',
     description='',
