@@ -1,5 +1,5 @@
 # Pyomc
-Pyomc if the Python Object Model Compiler for making it easier to integrate Python scripts into your Java codebase so you can share properties between your Java and Python code.  
+Pyomc is the Python Object Model Compiler for making it easier to integrate Python scripts into your Java codebase so you can share properties between your Java and Python code.  
 This command line tool takes in a config and directory of Python files and compiles them replaceing all instances of properties in the form of "${property.from.config.property.section}" into a target directory and runs the given entrypoint Python file.
 
 ### Usage 
